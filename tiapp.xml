@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <id>com.bananatv</id>
+    <id>com.bananaview</id>
     <name>BananaTv</name>
     <version>1.0</version>
     <publisher>josueisaac</publisher>
