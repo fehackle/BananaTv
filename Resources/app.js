@@ -5,7 +5,7 @@
 url ="http://apibananatv-chaqui.rhcloud.com/?canal=1";
 xhr = Ti.Network.createHTTPClient({
 	onload:function(x){
-		alert(this.responseText);
+		loadJson(JSON.parse(this.response));
 	},
 	onerror:function(x){},
 	onsendstream:function(x){},
@@ -15,4 +15,6 @@ xhr = Ti.Network.createHTTPClient({
 });
 xhr.open('GET',url);
 xhr.send();
-})();
+function loadJson(json){
+	var table = Ti.UI.createTableView();
+});
