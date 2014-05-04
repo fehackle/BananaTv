@@ -5,10 +5,9 @@ var win = Ti.UI.createWindow({
 var moment = require('moment.min');
 
 //recepcion de json
-url ="http://apibananatv-chaqui.rhcloud.com/?canal=1";
+
 xhr = Ti.Network.createHTTPClient({
 	onload:function(x){
-		alert(this.responseText);
 	},
 	onerror:function(x){},
 	onsendstream:function(x){},
@@ -27,7 +26,7 @@ var winPrincipal = Ti.UI.createWindow({
 //label para Guatevision
 var labelGuatevision = Ti.UI.createLabel({
   color: '#000',
-  font: { fontSize:16},
+  font: { fontSize:32},
   text: 'Guatevision',
   textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
   top: 30,
@@ -44,17 +43,21 @@ var winGuatevision = Ti.UI.createWindow({
 });
 var labelwinGuatevision = Ti.UI.createLabel({
   color: '#000',
-  font: { fontSize:16},
+  font: { fontSize:32},
   text: 'Ventana de Guatevision',
   textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
   top: 30,
-  width: Ti.UI.SIZE, height: Ti.UI.SIZE
+  width: Ti.UI.SIZE, height: Ti.UI.SIZEWW
 });
 winGuatevision.add(labelwinGuatevision);
 //inicio de la aplicacion
+
+function funJson(){
+		url ="http://apibananatv-chaqui.rhcloud.com/?canal=1";
+		xhr.open('GET',url);
+		xhr.send();
+}
 function iniciar(){
-	xhr.open('GET',url);
-	xhr.send();
 	moment.lang(Ti.Locale.getCurrentLanguage());
 	alert(moment().format('LLL'));
 	winPrincipal.open();
