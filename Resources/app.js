@@ -78,6 +78,7 @@ function loadJson(json){
 function iniciar(){
 	moment.lang(Ti.Locale.getCurrentLanguage());
 	alert(moment().format('LLL'));
+	database("create",null,null,null,null);
 	funJson();
 	
 }
