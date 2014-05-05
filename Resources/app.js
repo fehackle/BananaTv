@@ -10,7 +10,9 @@ xhr = Ti.Network.createHTTPClient({
 	onload:function(x){
 	},
 	onerror:function(x){},
-	onsendstream:function(x){},
+	onsendstream:function(x){
+		loadJson(JSON.parse(this.responseText));
+	},
 	ondatastream:function(x){},
 	onreadystatechange:function(x){},
 	timeout:5000	
@@ -53,13 +55,30 @@ winGuatevision.add(labelwinGuatevision);
 //inicio de la aplicacion
 
 function funJson(){
+		
 		url ="http://apibananatv-chaqui.rhcloud.com/?canal=1";
 		xhr.open('GET',url);
 		xhr.send();
 }
+
+//funcion usando Json 
+function loadJson(json){
+	var table = Ti.UI.createTableView();
+	for (var i=0; length = json.canal.lenght ; i++) {
+		var canal = json.canal[i];
+		 database("insert","canal",canal.nombre,id,null);
+		 for (var i=0; length = canal.canales.lenght; i++) {
+		   var programa = canal.canales;
+		   		database("insert","programa",programa.nombre,programa.id,programa.hora);
+		 };
+	};	
+}
+
+//funcion de iniciar 
 function iniciar(){
 	moment.lang(Ti.Locale.getCurrentLanguage());
 	alert(moment().format('LLL'));
-	winPrincipal.open();
+	funJson();
+	
 }
 iniciar();
