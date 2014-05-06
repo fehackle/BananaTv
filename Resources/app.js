@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 var id=0;
 //librerias auxiliares 
 //var moment = require('libs/moment');
 //conexion a base de datos 
 var database  = require('js/database');
 
+=======
+//ventana de prueba
+var win = Ti.UI.createWindow({
+	backgroundColor: "white"
+});
+var moment = require('moment.min');
+>>>>>>> parent of 0564012... arreglando conexiones e imagenes
 
 //recepcion de json
 
@@ -81,7 +89,12 @@ function loadJson(json){
 
 //funcion de iniciar 
 function iniciar(){
+<<<<<<< HEAD
 	alert("iniciando");
+=======
+	moment.lang(Ti.Locale.getCurrentLanguage());
+	alert(moment().format('LLL'));
+>>>>>>> parent of 0564012... arreglando conexiones e imagenes
 	database("create",null,null,null,null);
 	funJson();
 	winPrincipal.open();
