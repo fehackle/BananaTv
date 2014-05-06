@@ -1,3 +1,4 @@
+Ti.include("database.js");
 //ventana de prueba
 var win = Ti.UI.createWindow({
 	backgroundColor: "white"
@@ -76,8 +77,7 @@ function loadJson(json){
 
 //funcion de iniciar 
 function iniciar(){
-	moment.lang(Ti.Locale.getCurrentLanguage());
-	alert(moment().format('LLL'));
+
 	database("create",null,null,null,null);
 	funJson();
 	
