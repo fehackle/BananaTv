@@ -1,9 +1,9 @@
-Ti.include("database.js");
-//ventana de prueba
-var win = Ti.UI.createWindow({
-	backgroundColor: "white"
-});
-var moment = require('moment.min');
+var id=0;
+//librerias auxiliares 
+//var moment = require('libs/moment');
+//conexion a base de datos 
+var database  = require('js/database');
+
 
 //recepcion de json
 
@@ -56,10 +56,14 @@ winGuatevision.add(labelwinGuatevision);
 //inicio de la aplicacion
 
 function funJson(){
+		for (var i=1; i < 2; i++) {
+			id= i;
+			url ="http://apibananatv-chaqui.rhcloud.com/?canal="+id.toString();
+			alert(url);
+			xhr.open('GET',url);
+			xhr.send();
+		};
 		
-		url ="http://apibananatv-chaqui.rhcloud.com/?canal=1";
-		xhr.open('GET',url);
-		xhr.send();
 }
 
 //funcion usando Json 
@@ -77,9 +81,10 @@ function loadJson(json){
 
 //funcion de iniciar 
 function iniciar(){
-
+	alert("iniciando");
 	database("create",null,null,null,null);
 	funJson();
-	
+	winPrincipal.open();
 }
 iniciar();
+
