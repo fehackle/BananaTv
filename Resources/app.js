@@ -1,35 +1,27 @@
-<<<<<<< HEAD
 var id=0;
 //librerias auxiliares 
 //var moment = require('libs/moment');
 //conexion a base de datos 
 var database  = require('js/database');
 
-=======
-//ventana de prueba
-var win = Ti.UI.createWindow({
-	backgroundColor: "white"
-});
-var moment = require('moment.min');
->>>>>>> parent of 0564012... arreglando conexiones e imagenes
 
-//recepcion de json
-
+///////*****recepción de Json*****/////// 
 xhr = Ti.Network.createHTTPClient({
 	onload:function(x){
 	},
 	onerror:function(x){},
 	onsendstream:function(x){
+		alert(this.responseText);
 		loadJson(JSON.parse(this.responseText));
 	},
-	ondatastream:function(x){},
-	onreadystatechange:function(x){},
 	timeout:5000	
 });
 
 
-//////////////////////////////////////7
-//ventana Principal 
+///////////////////////////////////////
+
+
+///////*****ventana Principal*****/////// 
 var winPrincipal = Ti.UI.createWindow({
 	backgroundColor:"White",
 });
@@ -43,12 +35,12 @@ var labelGuatevision = Ti.UI.createLabel({
   top: 30,
   width: Ti.UI.SIZE, height: Ti.UI.SIZE
 });
-winPrincipal.add(labelGuatevision);
 labelGuatevision.addEventListener('click',function(e){
 	winGuatevision.open();
 });
 ///////////////////////////////////////////
-//ventana Guatevision 
+
+///////*****ventana Guatevision*****/////// 
 var winGuatevision = Ti.UI.createWindow({
 	backgroundColor:"White",
 });
@@ -64,7 +56,7 @@ winGuatevision.add(labelwinGuatevision);
 //inicio de la aplicacion
 
 function funJson(){
-		for (var i=1; i < 2; i++) {
+		for (var i=1; i <= 2; i++) {
 			id= i;
 			url ="http://apibananatv-chaqui.rhcloud.com/?canal="+id.toString();
 			alert(url);
@@ -76,7 +68,7 @@ function funJson(){
 
 //funcion usando Json 
 function loadJson(json){
-	var table = Ti.UI.createTableView();
+	alert("que onda");
 	for (var i=0; length = json.canal.lenght ; i++) {
 		var canal = json.canal[i];
 		 database("insert","canal",canal.nombre,id,null);
@@ -87,17 +79,23 @@ function loadJson(json){
 	};	
 }
 
+//funcion para agregar propiedades a la ventana principal e inicializarla
+function ventanas(){
+	winPrincipal.add(labelGuatevision);
+	winPrincipal.open();
+}
+
 //funcion de iniciar 
 function iniciar(){
-<<<<<<< HEAD
-	alert("iniciando");
-=======
-	moment.lang(Ti.Locale.getCurrentLanguage());
-	alert(moment().format('LLL'));
->>>>>>> parent of 0564012... arreglando conexiones e imagenes
-	database("create",null,null,null,null);
-	funJson();
-	winPrincipal.open();
+	if (Ti.Network.online == true  ) {
+		database("create",null,null,null,null);
+		alert("que onda 1");
+		funJson();
+	}
+	else{
+		alert("necesita conexion a internet para actualizar horarios");
+	}
+	ventanas();
 }
 iniciar();
 
